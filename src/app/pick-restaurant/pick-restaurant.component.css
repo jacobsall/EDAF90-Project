@@ -1,3 +1,15 @@
 .restaurant {
   width: 400px;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem;
+}
+
+.grid {
+  width: 100%;
+  /* background-color: blueviolet; */
+}
