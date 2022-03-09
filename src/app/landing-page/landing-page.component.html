@@ -1,1 +1,8 @@
-<p>landing-page works!</p>
+<div class="welcome-banner">
+    <img src="assets/img/Pizza.svg">
+    <h1>Välkommen till PizzaPower!!</h1>
+    <input type="hidden" #selection>
+    <button mat-raised-button color="primary" [routerLink]="['/restaurant']">
+        <span>Påbörja beställning</span>
+    </button>
+</div>

@@ -1,0 +1,23 @@
+.welcome-banner {
+    display: flex; 
+    margin: 82px auto 32px;
+    padding: 0 16px;
+    max-width: 960px;
+    flex-direction: column;
+    justify-content:center; 
+    align-items:center;
+}
+
+.welcome-banner h1{
+    font-size: 300%;
+}
+
+.welcome-banner img{
+    height: 400px;
+    width: auto;
+}
+
+.welcome-banner button{
+    padding: 20px 10px;
+    font-size: 36px;
+}
