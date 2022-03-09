@@ -1,14 +1,23 @@
 <div class="container">
   <h2>Meny</h2>
 
-  <mat-grid-list cols="4" rowHeight="150px" class="grid">
+  <mat-grid-list cols="4" rowHeight="175px" class="grid">
     <mat-grid-tile *ngFor="let pizza of pizzas">
       <mat-card class="pizza">
-        <mat-card-title>{{pizza}}</mat-card-title>
-        <mat-card-subtitle>{{menu[pizza].price + " kr"}}</mat-card-subtitle>
-        <mat-card-content>
-          Innehåller: 
-          {{ingredientString(pizza)}}
+        <div class="actions">
+          <div>
+            <mat-card-title>{{pizza}}</mat-card-title>
+            <mat-card-subtitle>{{menu[pizza].price + " kr"}}</mat-card-subtitle>
+          </div>
+          <button mat-mini-fab color="primary">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+        <mat-card-content class="actions">
+          <p>
+            Innehåller: 
+            {{ingredientString(pizza)}}
+          </p>
         </mat-card-content>
       </mat-card>
       <mat-divider></mat-divider>

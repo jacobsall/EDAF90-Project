@@ -13,3 +13,8 @@
   width: 100%;
   /* background-color: blueviolet; */
 }
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
