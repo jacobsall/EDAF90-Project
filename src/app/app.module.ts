@@ -19,12 +19,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { PickRestaurantComponent } from './pick-restaurant/pick-restaurant.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    PickRestaurantComponent
+    PickRestaurantComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
