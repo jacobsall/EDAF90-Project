@@ -18,11 +18,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { PickRestaurantComponent } from './pick-restaurant/pick-restaurant.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavigationComponent
+    NavigationComponent,
+    PickRestaurantComponent
   ],
   imports: [
     BrowserModule,
