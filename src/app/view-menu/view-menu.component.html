@@ -1,4 +1,17 @@
-<p>view-menu works!</p>
+<div class="container">
+  <h2>Meny</h2>
 
-<button (click)="onClick()">Click me!</button>
-
+  <mat-grid-list cols="4" rowHeight="150px" class="grid">
+    <mat-grid-tile *ngFor="let pizza of pizzas">
+      <mat-card class="pizza">
+        <mat-card-title>{{pizza}}</mat-card-title>
+        <mat-card-subtitle>{{menu[pizza].price + " kr"}}</mat-card-subtitle>
+        <mat-card-content>
+          Innehåller: 
+          {{ingredientString(pizza)}}
+        </mat-card-content>
+      </mat-card>
+      <mat-divider></mat-divider>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

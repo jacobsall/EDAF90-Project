@@ -9,8 +9,13 @@ import { MOCK_DATA } from '../mock-restaurant';
 })
 export class ViewMenuComponent implements OnInit {
 
-  id = history.state.id || 0;
+  private id = history.state.id || 0;
   menu = MOCK_DATA[this.id].menu;
+  pizzas = Object.keys(this.menu);
+
+  public ingredientString(pizza: string) {
+    return this.menu[pizza].ingredients.reduce((tot,curr) => tot + ", " + curr);
+  }
 
   public onClick() {
     console.log(this.menu);
