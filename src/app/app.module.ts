@@ -18,15 +18,21 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { MatDialogModule } from '@angular/material/dialog';
+
 import { PickRestaurantComponent } from './pick-restaurant/pick-restaurant.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { ChangeRestaurantDialogComponent } from './change-restaurant-dialog/change-restaurant-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     PickRestaurantComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    ChangeRestaurantDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -42,9 +48,13 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatCardModule,
+    MatGridListModule,
+    MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ChangeRestaurantDialogComponent]
 })
 export class AppModule { }

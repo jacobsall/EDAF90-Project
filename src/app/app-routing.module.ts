@@ -4,7 +4,8 @@ import { PickRestaurantComponent } from "./pick-restaurant/pick-restaurant.compo
 import { LandingPageComponent } from './landing-page/landing-page.component';
 const routes: Routes = [
   {path: 'restaurant', component: PickRestaurantComponent},
-  {path: '', component: LandingPageComponent, pathMatch: 'full'}
+  {path: '', component: LandingPageComponent, pathMatch: 'full'},
+  {path: '**', redirectTo: ''}
 ];
 
 @NgModule({
