@@ -22,7 +22,7 @@ export class PickRestaurantComponent implements OnInit {
     }
     else {
       this.activeId = id;
-      //this.router.navigate(['/menu']);
+      this.router.navigate(['/menu'], {state: {id: this.activeId}});
     }
   }
 
@@ -43,7 +43,7 @@ export class PickRestaurantComponent implements OnInit {
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
         this.activeId = id;
-        //this.router.navigate(['/menu']);
+        this.router.navigate(['/menu'], {state: {id: this.activeId}});
       }
     }
   );  

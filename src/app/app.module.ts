@@ -25,6 +25,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { PickRestaurantComponent } from './pick-restaurant/pick-restaurant.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ChangeRestaurantDialogComponent } from './change-restaurant-dialog/change-restaurant-dialog.component';
+import { ViewMenuComponent } from './view-menu/view-menu.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ChangeRestaurantDialogComponent } from './change-restaurant-dialog/chan
     NavigationComponent,
     PickRestaurantComponent,
     LandingPageComponent,
-    ChangeRestaurantDialogComponent
+    ChangeRestaurantDialogComponent,
+    ViewMenuComponent
   ],
   imports: [
     BrowserModule,
