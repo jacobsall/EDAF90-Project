@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { MOCK_DATA } from '../mock-restaurant';
-import { ActiveRestaurantService } from '../active-restaurant.service';
+import { GlobalDataService } from '../global-data.service';
 
 @Component({
   selector: 'app-view-menu',
@@ -21,7 +21,7 @@ export class ViewMenuComponent implements OnInit, OnDestroy {
   }
 
   public addPizza(name: string) {
-    this.activeService.addToCart(name);
+    this.dataService.addToCart(name);
     console.log(this.cart);
   }
 
@@ -29,10 +29,10 @@ export class ViewMenuComponent implements OnInit, OnDestroy {
     return this.cart !== undefined;
   }
 
-  constructor(private activeService: ActiveRestaurantService) {}
+  constructor(private dataService: GlobalDataService) {}
 
   private getCart() {
-    return this.activeService.getCart()
+    return this.dataService.getCart()
       .subscribe(item => {
         this.cart = item;
       });

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestaurantsService } from '../restaurants.service';
-import { ActiveRestaurantService } from '../active-restaurant.service';
+import { GlobalDataService } from '../global-data.service';
 
 @Component({
   selector: 'app-extras',
@@ -16,7 +16,7 @@ export class ExtrasComponent implements OnInit {
 
   constructor(
     private restaurantsService: RestaurantsService,
-    private activeService: ActiveRestaurantService
+    private dataService: GlobalDataService
   ) { }
 
   ngOnInit(): void {
@@ -24,7 +24,7 @@ export class ExtrasComponent implements OnInit {
   }
 
   private getActiveRestaurant(): void {
-    this.activeService.getActiveRestaurant()
+    this.dataService.getActiveRestaurant()
       .subscribe(item => {
         this.active = item;
         this.getRestaurants();
