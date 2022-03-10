@@ -25,6 +25,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import { PickRestaurantComponent } from './pick-restaurant/pick-restaurant.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -32,6 +33,7 @@ import { ChangeRestaurantDialogComponent } from './change-restaurant-dialog/chan
 import { ActiveRestaurantService } from './active-restaurant.service';
 import { CreateOrderComponent } from './create-order/create-order.component';
 import { RestaurantsService } from './restaurants.service';
+import { ExtrasComponent } from './extras/extras.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { RestaurantsService } from './restaurants.service';
     PickRestaurantComponent,
     LandingPageComponent,
     ChangeRestaurantDialogComponent,
-    CreateOrderComponent
+    CreateOrderComponent,
+    ExtrasComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,8 @@ import { RestaurantsService } from './restaurants.service';
     MatGridListModule,
     MatDialogModule,
     MatStepperModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatCheckboxModule,
   ],
   providers: [ActiveRestaurantService,RestaurantsService],
   bootstrap: [AppComponent],

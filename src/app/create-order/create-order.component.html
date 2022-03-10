@@ -6,6 +6,12 @@
             color="primary"
             [disabled]="!pick_res.hasPicked()">Next</button>
   </mat-step>
+  <mat-step [optional]="true">
+    <app-extras #extras></app-extras>
+    <button mat-raised-button
+            matStepperNext
+            color="primary">Next</button>
+  </mat-step>
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
     Order places
