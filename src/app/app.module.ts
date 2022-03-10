@@ -29,9 +29,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { PickRestaurantComponent } from './pick-restaurant/pick-restaurant.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ChangeRestaurantDialogComponent } from './change-restaurant-dialog/change-restaurant-dialog.component';
+import { ViewMenuComponent } from './view-menu/view-menu.component';
+import { RestaurantsService } from './restaurants.service';
 import { ActiveRestaurantService } from './active-restaurant.service';
 import { CreateOrderComponent } from './create-order/create-order.component';
-import { RestaurantsService } from './restaurants.service';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { RestaurantsService } from './restaurants.service';
     PickRestaurantComponent,
     LandingPageComponent,
     ChangeRestaurantDialogComponent,
+    ViewMenuComponent,
     CreateOrderComponent
   ],
   imports: [

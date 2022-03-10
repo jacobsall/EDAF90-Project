@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { Router } from '@angular/router';
 import { ChangeRestaurantDialogComponent } from '../change-restaurant-dialog/change-restaurant-dialog.component';
-
 import { ActiveRestaurantService } from '../active-restaurant.service';
 import { RestaurantsService } from '../restaurants.service';
 
@@ -31,6 +30,10 @@ export class PickRestaurantComponent implements OnInit, OnDestroy {
     return id === this.active?.activeId;
   }
 
+  public hasPicked() {
+    return this.active !== undefined;
+  }
+
   private openDialog(id: string) {
     const dialogConfig = new MatDialogConfig();
 
@@ -41,8 +44,6 @@ export class PickRestaurantComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
         this.activeService.setActiveRestaurant(id);
-        //console.log(this.restaurants.find((x: any) => x.id === id));
-        //this.router.navigate(['/menu']);
       }
     });
   }
@@ -60,10 +61,10 @@ export class PickRestaurantComponent implements OnInit, OnDestroy {
   }
 
   constructor(
-    private dialog: MatDialog, 
-    private router: Router, 
+    private dialog: MatDialog,
+    private router: Router,
     private activeService: ActiveRestaurantService,
-    private restaurantsService: RestaurantsService) 
+    private restaurantsService: RestaurantsService)
     {}
 
   ngOnInit(): void {
@@ -77,6 +78,5 @@ export class PickRestaurantComponent implements OnInit, OnDestroy {
     this.restaurantsSub.unsubscribe();
     // console.log("destroyed")
   }
-
 
 }

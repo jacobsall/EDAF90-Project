@@ -1,10 +1,17 @@
 <mat-stepper [linear]="true" #stepper>
-  <mat-step [completed]="hasPicked()">
+  <mat-step [completed]="pick_res.hasPicked()">
     <app-pick-restaurant #pick_res></app-pick-restaurant>
     <button mat-raised-button
             matStepperNext
             color="primary"
-            [disabled]="!hasPicked()">Next</button>
+            [disabled]="!pick_res.hasPicked()">Next</button>
+  </mat-step>
+  <mat-step [completed]="vm.hasPicked()">
+    <app-view-menu #vm></app-view-menu>
+    <button mat-raised-button
+            matStepperNext
+            color="primary"
+            [disabled]="!vm.hasPicked()">Next</button>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
