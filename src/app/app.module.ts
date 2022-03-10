@@ -39,7 +39,7 @@ import { CreateOrderComponent } from './create-order/create-order.component';
     PickRestaurantComponent,
     LandingPageComponent,
     ChangeRestaurantDialogComponent,
-    ViewMenuComponent
+    ViewMenuComponent,
     CreateOrderComponent
   ],
   imports: [

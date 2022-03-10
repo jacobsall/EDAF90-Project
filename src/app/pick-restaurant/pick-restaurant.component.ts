@@ -48,7 +48,6 @@ export class PickRestaurantComponent implements OnInit {
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
         this.activeService.setActiveRestaurant(id);
-        this.router.navigate(['/menu'], {state: {id: this.activeId}});
       }
     });
   }
@@ -67,5 +66,4 @@ export class PickRestaurantComponent implements OnInit {
   ngOnInit(): void {
     this.getActiveRestaurant();
   }
-
 }

@@ -12,6 +12,7 @@ export class ViewMenuComponent implements OnInit {
   private id = history.state.id || 0;
   menu = MOCK_DATA[this.id].menu;
   pizzas = Object.keys(this.menu);
+  private done = false;
 
   public ingredientString(pizza: string) {
     return this.menu[pizza].ingredients.reduce((tot,curr) => tot + ", " + curr);
@@ -19,6 +20,11 @@ export class ViewMenuComponent implements OnInit {
 
   public onClick() {
     console.log(this.menu);
+    this.done = true;
+  }
+
+  public hasPicked() {
+    return this.done;
   }
 
   constructor(private router: Router) {}
