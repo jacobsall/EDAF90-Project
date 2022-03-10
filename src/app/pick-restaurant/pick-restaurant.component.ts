@@ -32,7 +32,6 @@ export class PickRestaurantComponent implements OnInit, OnDestroy {
     else {
       this.activeService.setActiveRestaurant(id);
     }
-    console.log(this.restaurants[0].location._lat)
   }
 
   public isActive(id: string) {
