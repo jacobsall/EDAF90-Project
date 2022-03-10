@@ -6,6 +6,7 @@ import { ActiveRestaurantService } from '../active-restaurant.service';
   templateUrl: './create-order.component.html',
   styleUrls: ['./create-order.component.css']
 })
+
 export class CreateOrderComponent implements OnInit, OnDestroy {
   private activeSub: any;
   private active: any;
