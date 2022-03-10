@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActiveRestaurantService } from '../active-restaurant.service';
+import { GlobalDataService } from '../global-data.service';
 
 @Component({
   selector: 'app-create-order',
@@ -13,7 +13,7 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
   public isLinear: boolean = true;
 
   private getActiveRestaurant() {
-    return this.activeService.getActiveRestaurant()
+    return this.dataService.getActiveRestaurant()
       .subscribe(item => {
         this.active = item
       });
@@ -23,7 +23,7 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
     return this.active !== undefined;
   }
 
-  constructor(private activeService: ActiveRestaurantService) {}
+  constructor(private dataService: GlobalDataService) {}
 
   ngOnInit(): void {
     this.activeSub = this.getActiveRestaurant();

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { Router } from '@angular/router';
 import { ChangeRestaurantDialogComponent } from '../change-restaurant-dialog/change-restaurant-dialog.component';
-import { ActiveRestaurantService } from '../active-restaurant.service';
+import { GlobalDataService } from '../global-data.service';
 import { RestaurantsService } from '../restaurants.service';
 
 @Component({
@@ -30,7 +30,7 @@ export class PickRestaurantComponent implements OnInit, OnDestroy {
       this.openDialog(id)
     }
     else {
-      this.activeService.setActiveRestaurant(id);
+      this.dataService.setActiveRestaurant(id);
     }
   }
 
@@ -55,13 +55,13 @@ export class PickRestaurantComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
-        this.activeService.setActiveRestaurant(id);
+        this.dataService.setActiveRestaurant(id);
       }
     });
   }
 
   private getActiveRestaurant() {
-    return this.activeService.getActiveRestaurant()
+    return this.dataService.getActiveRestaurant()
       .subscribe(item => this.active = item);
   }
 
@@ -73,7 +73,7 @@ export class PickRestaurantComponent implements OnInit, OnDestroy {
   constructor(
     private dialog: MatDialog,
     private router: Router,
-    private activeService: ActiveRestaurantService,
+    private dataService: GlobalDataService,
     private restaurantsService: RestaurantsService)
     {}
 

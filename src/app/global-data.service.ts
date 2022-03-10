@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ActiveRestaurantService {
+export class GlobalDataService {
 
   private restaurantSubject: Subject<any> = new BehaviorSubject<any>(undefined);
 

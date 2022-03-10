@@ -33,7 +33,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ChangeRestaurantDialogComponent } from './change-restaurant-dialog/change-restaurant-dialog.component';
 import { ViewMenuComponent } from './view-menu/view-menu.component';
 import { RestaurantsService } from './restaurants.service';
-import { ActiveRestaurantService } from './active-restaurant.service';
+import { GlobalDataService } from './global-data.service';
 import { CreateOrderComponent } from './create-order/create-order.component';
 import { ExtrasComponent } from './extras/extras.component';
 
@@ -73,7 +73,7 @@ import { ExtrasComponent } from './extras/extras.component';
     MatFormFieldModule,
     MatCheckboxModule,
   ],
-  providers: [ActiveRestaurantService,RestaurantsService],
+  providers: [GlobalDataService,RestaurantsService],
   bootstrap: [AppComponent],
   entryComponents: [ChangeRestaurantDialogComponent]
 })
