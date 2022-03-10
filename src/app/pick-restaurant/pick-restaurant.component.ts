@@ -6,6 +6,7 @@ import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MOCK_DATA } from '../mock-restaurant';
 
 import { ActiveRestaurantService } from '../active-restaurant.service';
+import { RestaurantsService } from '../restaurants.service';
 
 @Component({
   selector: 'app-pick-restaurant',
@@ -14,8 +15,7 @@ import { ActiveRestaurantService } from '../active-restaurant.service';
 })
 export class PickRestaurantComponent implements OnInit {
 
-  public restaurants = MOCK_DATA;
-  public ids = Object.keys(this.restaurants);
+  public restaurants: any;
   private active: any;
 
   public onClick(id: string) {
@@ -39,33 +39,41 @@ export class PickRestaurantComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.autoFocus = false;
-    dialogConfig.data = {
-      id
-    }
+    // dialogConfig.data = {
+    //   id
+    // }
 
     const dialogRef = this.dialog.open(ChangeRestaurantDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
         this.activeService.setActiveRestaurant(id);
+        console.log(this.restaurants.find((x: any) => x.id === id));
         //this.router.navigate(['/menu']);
       }
     });
   }
 
-  getActiveRestaurant(): void {
+  private getActiveRestaurant(): void {
     this.activeService.getActiveRestaurant()
-      .subscribe(observable => this.active = observable);
+      .subscribe(item => this.active = item);
+  }
+
+  private getRestaurants(): void {
+    this.restaurantsService.getRestaurants()
+      .subscribe(items => this.restaurants = items)
   }
 
   constructor(
-    private dialog: MatDialog,
-    private router: Router,
-    private activeService: ActiveRestaurantService)
+    private dialog: MatDialog, 
+    private router: Router, 
+    private activeService: ActiveRestaurantService,
+    private restaurantsService: RestaurantsService) 
     { }
 
   ngOnInit(): void {
     this.getActiveRestaurant();
+    this.getRestaurants();
   }
 
 }

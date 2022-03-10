@@ -11,7 +11,7 @@ interface Restaurant {
   name: string
 }
 
-interface Data {
+export interface Data {
   [index: string]: Restaurant
 }
 

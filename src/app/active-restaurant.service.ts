@@ -6,7 +6,6 @@ import { Observable, Subject } from 'rxjs';
 })
 export class ActiveRestaurantService {
 
-  //private activeId: string | undefined = undefined;
   private subject: Subject<any> = new Subject<any>();
 
   getActiveRestaurant(): Observable<any> {

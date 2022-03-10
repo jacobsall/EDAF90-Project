@@ -5,8 +5,9 @@ import { FormsModule, ReactiveFormsModule  } from "@angular/forms";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
+
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideFunctions,getFunctions } from '@angular/fire/functions';
@@ -30,6 +31,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ChangeRestaurantDialogComponent } from './change-restaurant-dialog/change-restaurant-dialog.component';
 import { ActiveRestaurantService } from './active-restaurant.service';
 import { CreateOrderComponent } from './create-order/create-order.component';
+import { RestaurantsService } from './restaurants.service';
 
 @NgModule({
   declarations: [
@@ -63,7 +65,7 @@ import { CreateOrderComponent } from './create-order/create-order.component';
     MatStepperModule,
     MatFormFieldModule
   ],
-  providers: [ActiveRestaurantService],
+  providers: [ActiveRestaurantService,RestaurantsService],
   bootstrap: [AppComponent],
   entryComponents: [ChangeRestaurantDialogComponent]
 })
