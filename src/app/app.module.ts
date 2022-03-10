@@ -26,6 +26,7 @@ import { PickRestaurantComponent } from './pick-restaurant/pick-restaurant.compo
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ChangeRestaurantDialogComponent } from './change-restaurant-dialog/change-restaurant-dialog.component';
 import { ViewMenuComponent } from './view-menu/view-menu.component';
+import { ActiveRestaurantService } from './active-restaurant.service';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,7 @@ import { ViewMenuComponent } from './view-menu/view-menu.component';
     MatGridListModule,
     MatDialogModule
   ],
-  providers: [],
+  providers: [ActiveRestaurantService],
   bootstrap: [AppComponent],
   entryComponents: [ChangeRestaurantDialogComponent]
 })
