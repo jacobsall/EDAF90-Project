@@ -14,6 +14,14 @@ import { RestaurantsService } from '../restaurants.service';
 export class PickRestaurantComponent implements OnInit, OnDestroy {
 
   public restaurants: any;
+  public mapOptions: google.maps.MapOptions = {
+    zoomControl: false,
+    scrollwheel: true,
+    mapTypeId: 'hybrid',
+    zoom: 15,
+    fullscreenControl: true,
+    controlSize: 30,
+  }
   private active: any;
   private activeSub: any;
   private restaurantsSub: any;
@@ -25,10 +33,19 @@ export class PickRestaurantComponent implements OnInit, OnDestroy {
     else {
       this.activeService.setActiveRestaurant(id);
     }
+    console.log(this.restaurants[0].location._lat)
   }
 
   public isActive(id: string) {
     return id === this.active?.activeId;
+  }
+
+
+  public getCoord(location: any) {
+    const lat: number = location._lat;
+    const lng: number = location._long;
+    const center = new google.maps.LatLng(lat, lng);
+    return center;
   }
 
   private openDialog(id: string) {
@@ -49,9 +66,7 @@ export class PickRestaurantComponent implements OnInit, OnDestroy {
 
   private getActiveRestaurant() {
     return this.activeService.getActiveRestaurant()
-      .subscribe(item => {
-        this.active = item
-      });
+      .subscribe(item => this.active = item);
   }
 
   private getRestaurants() {
@@ -69,13 +84,11 @@ export class PickRestaurantComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.activeSub = this.getActiveRestaurant();
     this.restaurantsSub = this.getRestaurants();
-    // this.activeService.doStuff();
   }
 
   ngOnDestroy(): void {
     this.activeSub.unsubscribe();
     this.restaurantsSub.unsubscribe();
-    // console.log("destroyed")
   }
 
 

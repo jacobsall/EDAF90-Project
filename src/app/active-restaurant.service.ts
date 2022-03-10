@@ -7,21 +7,12 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 export class ActiveRestaurantService {
 
   private subject: Subject<any> = new BehaviorSubject<any>(undefined);
-  // private thing:any;
 
   getActiveRestaurant(): Observable<any> {
-    // console.log(this.subject.asObservable())
     return this.subject.asObservable();
   } 
 
-  // doStuff(){
-  //   console.log("stuff")
-  //   console.log(this.thing)
-  // }
-
   setActiveRestaurant(id: string) {
-    // console.log("---------------------------------------")
-    // this.thing = id;
     this.subject.next({activeId: id});
   }
 
