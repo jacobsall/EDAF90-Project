@@ -4,8 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
+
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideFunctions,getFunctions } from '@angular/fire/functions';
@@ -26,6 +27,7 @@ import { PickRestaurantComponent } from './pick-restaurant/pick-restaurant.compo
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ChangeRestaurantDialogComponent } from './change-restaurant-dialog/change-restaurant-dialog.component';
 import { ActiveRestaurantService } from './active-restaurant.service';
+import { RestaurantsService } from './restaurants.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,7 @@ import { ActiveRestaurantService } from './active-restaurant.service';
     MatGridListModule,
     MatDialogModule
   ],
-  providers: [ActiveRestaurantService],
+  providers: [ActiveRestaurantService,RestaurantsService],
   bootstrap: [AppComponent],
   entryComponents: [ChangeRestaurantDialogComponent]
 })

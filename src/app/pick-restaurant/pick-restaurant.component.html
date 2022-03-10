@@ -4,13 +4,13 @@
 <h2>Välj en restaurang</h2>
 
 <mat-grid-list cols="1" rowHeight="150px" class="grid">
-  <mat-grid-tile *ngFor="let id of ids">
+  <mat-grid-tile *ngFor="let restaurant of restaurants">
     <mat-card class="restaurant">
-      <mat-card-title>{{restaurants[id].name}}</mat-card-title>
-      <mat-card-content>{{restaurants[id].location}}</mat-card-content>
+      <mat-card-title>{{restaurant.name}}</mat-card-title>
+      <mat-card-content>{{restaurants.location}}</mat-card-content>
       <mat-card-actions>
-        <button [disabled]="isActive(id)" (click)="onClick(id)" mat-raised-button color="primary">
-          {{ !isActive(id) ? "Välj restaurang" : "Restaurang vald"}}
+        <button [disabled]="isActive(restaurant.id)" (click)="onClick(restaurant.id)" mat-raised-button color="primary">
+          {{ !isActive(restaurant.id) ? "Välj restaurang" : "Restaurang vald"}}
         </button>
       </mat-card-actions>
     </mat-card>
