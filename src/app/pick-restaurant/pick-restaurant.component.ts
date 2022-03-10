@@ -1,10 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { Router } from '@angular/router';
 import { ChangeRestaurantDialogComponent } from '../change-restaurant-dialog/change-restaurant-dialog.component';
-import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
-import { MOCK_DATA } from '../mock-restaurant';
-
 import { ActiveRestaurantService } from '../active-restaurant.service';
 import { RestaurantsService } from '../restaurants.service';
 
@@ -13,10 +10,20 @@ import { RestaurantsService } from '../restaurants.service';
   templateUrl: './pick-restaurant.component.html',
   styleUrls: ['./pick-restaurant.component.css']
 })
-export class PickRestaurantComponent implements OnInit {
+export class PickRestaurantComponent implements OnInit, OnDestroy {
 
   public restaurants: any;
+  public mapOptions: google.maps.MapOptions = {
+    zoomControl: false,
+    scrollwheel: true,
+    mapTypeId: 'hybrid',
+    zoom: 15,
+    fullscreenControl: true,
+    controlSize: 30,
+  }
   private active: any;
+  private activeSub: any;
+  private restaurantsSub: any;
 
   public onClick(id: string) {
     if (this.active !== undefined) {
@@ -25,55 +32,60 @@ export class PickRestaurantComponent implements OnInit {
     else {
       this.activeService.setActiveRestaurant(id);
     }
+    console.log(this.restaurants[0].location._lat)
   }
 
   public isActive(id: string) {
     return id === this.active?.activeId;
   }
 
-  public hasPicked() {
-    return this.active !== undefined;
+
+  public getCoord(location: any) {
+    const lat: number = location._lat;
+    const lng: number = location._long;
+    const center = new google.maps.LatLng(lat, lng);
+    return center;
   }
 
   private openDialog(id: string) {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.autoFocus = false;
-    // dialogConfig.data = {
-    //   id
-    // }
 
     const dialogRef = this.dialog.open(ChangeRestaurantDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
         this.activeService.setActiveRestaurant(id);
-        console.log(this.restaurants.find((x: any) => x.id === id));
-        //this.router.navigate(['/menu']);
       }
     });
   }
 
-  private getActiveRestaurant(): void {
-    this.activeService.getActiveRestaurant()
+  private getActiveRestaurant() {
+    return this.activeService.getActiveRestaurant()
       .subscribe(item => this.active = item);
   }
 
-  private getRestaurants(): void {
-    this.restaurantsService.getRestaurants()
+  private getRestaurants() {
+    return this.restaurantsService.getRestaurants()
       .subscribe(items => this.restaurants = items)
   }
 
   constructor(
-    private dialog: MatDialog, 
-    private router: Router, 
+    private dialog: MatDialog,
+    private router: Router,
     private activeService: ActiveRestaurantService,
-    private restaurantsService: RestaurantsService) 
-    { }
+    private restaurantsService: RestaurantsService)
+    {}
 
   ngOnInit(): void {
-    this.getActiveRestaurant();
-    this.getRestaurants();
+    this.activeSub = this.getActiveRestaurant();
+    this.restaurantsSub = this.getRestaurants();
+  }
+
+  ngOnDestroy(): void {
+    this.activeSub.unsubscribe();
+    this.restaurantsSub.unsubscribe();
   }
 
 }

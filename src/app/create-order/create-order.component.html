@@ -1,10 +1,17 @@
 <mat-stepper [linear]="true" #stepper>
-  <mat-step [completed]="pick_res.hasPicked()">
+  <mat-step [completed]="hasPicked()">
     <app-pick-restaurant #pick_res></app-pick-restaurant>
     <button mat-raised-button
             matStepperNext
             color="primary"
-            [disabled]="!pick_res.hasPicked()">Next</button>
+            [disabled]="!hasPicked()">Next</button>
+  </mat-step>
+  <mat-step [completed]="vm.hasPicked()">
+    <app-view-menu #vm></app-view-menu>
+    <button mat-raised-button
+            matStepperNext
+            color="primary"
+            [disabled]="!vm.hasPicked()">Next</button>
   </mat-step>
   <mat-step [optional]="true">
     <app-extras #extras></app-extras>

@@ -12,6 +12,7 @@ export class ExtrasComponent implements OnInit {
   public restaurants: any;
   private active: any;
   public extras: any;
+  public keys:any;
 
   constructor(
     private restaurantsService: RestaurantsService,
@@ -20,6 +21,7 @@ export class ExtrasComponent implements OnInit {
 
   ngOnInit(): void {
     this.getActiveRestaurant();
+    console.log("I extras ");
   }
 
   private getActiveRestaurant(): void {
@@ -33,7 +35,8 @@ export class ExtrasComponent implements OnInit {
   private getRestaurants(): void {
     this.restaurantsService.getRestaurants()
       .subscribe(items => {this.restaurants = items;
-      this.extras = this.restaurants[this.active].extras;
+      this.extras = this.restaurants.find((a: any) => a.id === this.active.activeId).extras;
+      this.keys = Object.keys(this.extras);
     });
   }
 }
