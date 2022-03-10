@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActiveRestaurantService } from '../active-restaurant.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { ActiveRestaurantService } from '../active-restaurant.service';
   templateUrl: './create-order.component.html',
   styleUrls: ['./create-order.component.css']
 })
-export class CreateOrderComponent implements OnInit {
+export class CreateOrderComponent implements OnInit, OnDestroy {
   private activeSub: any;
   private active: any;
   public isLinear: boolean = true;
@@ -26,5 +26,9 @@ export class CreateOrderComponent implements OnInit {
 
   ngOnInit(): void {
     this.activeSub = this.getActiveRestaurant();
+  }
+
+  ngOnDestroy(): void {
+    this.activeSub.unsubscribe();
   }
 }
