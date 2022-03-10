@@ -20,11 +20,9 @@
             color="primary">Next</button>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    Order places
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
+    <app-view-cart #vc></app-view-cart>
+    <button mat-raised-button
+            (click)="sendOrder()";
+            color="primary">Place order</button>
   </mat-step>
 </mat-stepper>

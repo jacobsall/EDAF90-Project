@@ -36,6 +36,7 @@ import { RestaurantsService } from './restaurants.service';
 import { GlobalDataService } from './global-data.service';
 import { CreateOrderComponent } from './create-order/create-order.component';
 import { ExtrasComponent } from './extras/extras.component';
+import { ViewCartComponent } from './view-cart/view-cart.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { ExtrasComponent } from './extras/extras.component';
     CreateOrderComponent,
     ExtrasComponent,
     ViewMenuComponent,
+    ViewCartComponent,
   ],
   imports: [
     BrowserModule,

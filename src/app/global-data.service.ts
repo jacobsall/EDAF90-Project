@@ -36,5 +36,13 @@ export class GlobalDataService {
     this.cartSubject.next(currentValue);
   }
 
+  clearCart(){
+    this.cartSubject.next(undefined);
+  }
+
+  clearActive(){
+    this.restaurantSubject.next(undefined);
+  }
+
   constructor() {}
 }

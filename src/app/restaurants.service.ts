@@ -16,4 +16,8 @@ export class RestaurantsService {
     return collectionData(restaurantsRef, {idField: 'id'});
   }
 
+  pushCart(){
+    //TODO Säll löser
+  }
+
 }
