@@ -21,7 +21,7 @@ export class ViewMenuComponent implements OnInit, OnDestroy {
   }
 
   public addPizza(name: string) {
-    this.activeService.addToCart(name);
+    this.activeService.addToCart(name, this.menu[name].price);
     console.log(this.cart);
   }
 

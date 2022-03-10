@@ -22,12 +22,15 @@ export class ActiveRestaurantService {
     return this.cartSubject.asObservable();
   }
 
-  addToCart(toAdd: string) {
+  addToCart(toAdd: string, price: number) {
     const currentValue = this.cartSubject.value || {};
     if (currentValue[toAdd]) {
-      currentValue[toAdd]++;
+      currentValue[toAdd].amount++;
     } else {
-      currentValue[toAdd] = 1;
+      currentValue[toAdd] = {
+        amount: 1,
+        price: price,
+      }
     }
 
     this.cartSubject.next(currentValue);

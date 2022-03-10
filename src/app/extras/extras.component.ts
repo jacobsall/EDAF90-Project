@@ -13,6 +13,7 @@ export class ExtrasComponent implements OnInit {
   private active: any;
   public extras: any;
   public keys:any;
+  private cart: any;
 
   constructor(
     private restaurantsService: RestaurantsService,
@@ -21,6 +22,7 @@ export class ExtrasComponent implements OnInit {
 
   ngOnInit(): void {
     this.getActiveRestaurant();
+    this.getCart();
   }
 
   private getActiveRestaurant(): void {
@@ -37,5 +39,17 @@ export class ExtrasComponent implements OnInit {
       this.extras = this.restaurants.find((a: any) => a.id === this.active?.activeId)?.extras;
       this.keys = this.extras && Object.keys(this.extras);
     });
+  }
+
+  private getCart() {
+    return this.activeService.getCart()
+      .subscribe(item => {
+        this.cart = item;
+      });
+  }
+
+  public addExtra(name: string) {
+    this.activeService.addToCart(name, this.extras[name].price);
+    console.log(this.cart);
   }
 }

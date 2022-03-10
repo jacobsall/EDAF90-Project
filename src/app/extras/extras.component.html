@@ -1,9 +1,21 @@
-<p>extras works!</p>
-
-<section class="extras-check">
-    <li *ngFor="let extra of keys">
-        <mat-checkbox>
-            {{extra}}
-        </mat-checkbox>
-    </li>
-</section>
+<div class="container">
+    <h2>Extras</h2>
+  
+    <mat-grid-list cols="4" rowHeight="175px" class="grid">
+      <mat-grid-tile *ngFor="let extra of keys">
+        <mat-card class="extra">
+          <div class="actions">
+            <div>
+              <mat-card-title>{{extra}}</mat-card-title>
+              <mat-card-subtitle>{{extras[extra].price + " kr"}}</mat-card-subtitle>
+            </div>
+            <button mat-mini-fab (click)="this.addExtra(extra)"
+                    color="primary">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </mat-card>
+        <mat-divider></mat-divider>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
