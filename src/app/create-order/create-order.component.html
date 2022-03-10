@@ -1,5 +1,6 @@
 <mat-stepper [linear]="true" #stepper>
   <mat-step [completed]="hasPicked()">
+    <ng-template matStepLabel>Välj restaurang</ng-template>
     <app-pick-restaurant #pick_res></app-pick-restaurant>
     <button mat-raised-button
             matStepperNext
@@ -7,6 +8,7 @@
             [disabled]="!hasPicked()">Next</button>
   </mat-step>
   <mat-step [completed]="vm.hasPicked()">
+    <ng-template matStepLabel>Välj pizzor</ng-template>
     <app-view-menu #vm></app-view-menu>
     <button mat-raised-button
             matStepperNext
@@ -14,6 +16,7 @@
             [disabled]="!vm.hasPicked()">Next</button>
   </mat-step>
   <mat-step [optional]="true">
+    <ng-template matStepLabel>Välj tillbehör</ng-template>
     <app-extras #extras></app-extras>
     <button mat-raised-button
             matStepperNext
