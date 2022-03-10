@@ -15,22 +15,21 @@ export class PickRestaurantComponent implements OnInit {
 
   public restaurants = MOCK_DATA;
   public ids = Object.keys(this.restaurants);
-  private activeId: any;
+  private active: any;
 
 
   public onClick(id: string) {
-    if (this.activeId !== undefined) {
+    if (this.active !== undefined) {
       this.openDialog(id)
     }
     else {
-      this.dataService.setActiveRestaurant(id);
+      this.activeService.setActiveRestaurant(id);
       this.router.navigate(['/menu'], {state: {id: this.activeId}});
     }
-    console.log(this.activeId.activeId);
   }
 
   public isActive(id: string) {
-    return id === this.activeId?.activeId;
+    return id === this.active?.activeId;
   }
 
   private openDialog(id: string) {
@@ -45,24 +44,22 @@ export class PickRestaurantComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
-        this.dataService.setActiveRestaurant(id);
+        this.activeService.setActiveRestaurant(id);
         this.router.navigate(['/menu'], {state: {id: this.activeId}});
       }
     });
   }
 
   getActiveRestaurant(): void {
-    this.dataService.getActiveRestaurant()
-      .subscribe(id => this.activeId = id);
+    this.activeService.getActiveRestaurant()
+      .subscribe(observable => this.active = observable);
   }
 
   constructor(
     private dialog: MatDialog,
     private router: Router,
-    private dataService: ActiveRestaurantService)
-    {
-
-    }
+    private activeService: ActiveRestaurantService)
+    { }
 
   ngOnInit(): void {
     this.getActiveRestaurant();
