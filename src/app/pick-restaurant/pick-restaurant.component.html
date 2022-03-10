@@ -8,7 +8,10 @@
       <div>
         <mat-card-title>{{restaurant.name}}</mat-card-title>
         <mat-card-actions>
-          <button [disabled]="isActive(restaurant.id)" (click)="onClick(restaurant.id)" mat-raised-button color="primary">
+          <button [disabled]="isActive(restaurant.id)"
+                  (click)="onClick(restaurant.id)"
+                  mat-raised-button
+                  color="primary">
             {{ !isActive(restaurant.id) ? "Välj restaurang" : "Restaurang vald"}}
           </button>
         </mat-card-actions>

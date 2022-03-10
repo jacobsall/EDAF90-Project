@@ -9,7 +9,7 @@
             <mat-card-title>{{pizza}}</mat-card-title>
             <mat-card-subtitle>{{menu[pizza].price + " kr"}}</mat-card-subtitle>
           </div>
-          <button mat-mini-fab (click)="this.onClick()"
+          <button mat-mini-fab (click)="this.addPizza(pizza)"
                   color="primary">
             <mat-icon>add</mat-icon>
           </button>
