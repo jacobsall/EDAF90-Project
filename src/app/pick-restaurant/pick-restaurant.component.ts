@@ -1,9 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { Router } from '@angular/router';
 import { ChangeRestaurantDialogComponent } from '../change-restaurant-dialog/change-restaurant-dialog.component';
-import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
-import { MOCK_DATA } from '../mock-restaurant';
 
 import { ActiveRestaurantService } from '../active-restaurant.service';
 import { RestaurantsService } from '../restaurants.service';
@@ -13,10 +11,12 @@ import { RestaurantsService } from '../restaurants.service';
   templateUrl: './pick-restaurant.component.html',
   styleUrls: ['./pick-restaurant.component.css']
 })
-export class PickRestaurantComponent implements OnInit {
+export class PickRestaurantComponent implements OnInit, OnDestroy {
 
   public restaurants: any;
   private active: any;
+  private activeSub: any;
+  private restaurantsSub: any;
 
   public onClick(id: string) {
     if (this.active !== undefined) {
@@ -31,36 +31,31 @@ export class PickRestaurantComponent implements OnInit {
     return id === this.active?.activeId;
   }
 
-  public hasPicked() {
-    return this.active !== undefined;
-  }
-
   private openDialog(id: string) {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.autoFocus = false;
-    // dialogConfig.data = {
-    //   id
-    // }
 
     const dialogRef = this.dialog.open(ChangeRestaurantDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
         this.activeService.setActiveRestaurant(id);
-        console.log(this.restaurants.find((x: any) => x.id === id));
+        //console.log(this.restaurants.find((x: any) => x.id === id));
         //this.router.navigate(['/menu']);
       }
     });
   }
 
-  private getActiveRestaurant(): void {
-    this.activeService.getActiveRestaurant()
-      .subscribe(item => this.active = item);
+  private getActiveRestaurant() {
+    return this.activeService.getActiveRestaurant()
+      .subscribe(item => {
+        this.active = item
+      });
   }
 
-  private getRestaurants(): void {
-    this.restaurantsService.getRestaurants()
+  private getRestaurants() {
+    return this.restaurantsService.getRestaurants()
       .subscribe(items => this.restaurants = items)
   }
 
@@ -69,11 +64,19 @@ export class PickRestaurantComponent implements OnInit {
     private router: Router, 
     private activeService: ActiveRestaurantService,
     private restaurantsService: RestaurantsService) 
-    { }
+    {}
 
   ngOnInit(): void {
-    this.getActiveRestaurant();
-    this.getRestaurants();
+    this.activeSub = this.getActiveRestaurant();
+    this.restaurantsSub = this.getRestaurants();
+    // this.activeService.doStuff();
   }
+
+  ngOnDestroy(): void {
+    this.activeSub.unsubscribe();
+    this.restaurantsSub.unsubscribe();
+    // console.log("destroyed")
+  }
+
 
 }
