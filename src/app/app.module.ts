@@ -25,6 +25,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { PickRestaurantComponent } from './pick-restaurant/pick-restaurant.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ChangeRestaurantDialogComponent } from './change-restaurant-dialog/change-restaurant-dialog.component';
+import { ActiveRestaurantService } from './active-restaurant.service';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,7 @@ import { ChangeRestaurantDialogComponent } from './change-restaurant-dialog/chan
     MatGridListModule,
     MatDialogModule
   ],
-  providers: [],
+  providers: [ActiveRestaurantService],
   bootstrap: [AppComponent],
   entryComponents: [ChangeRestaurantDialogComponent]
 })

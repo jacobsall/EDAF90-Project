@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { ChangeRestaurantDialogComponent } from '../change-restaurant-dialog/change-restaurant-dialog.component';
 import { MOCK_DATA } from '../mock-restaurant';
 
+import { ActiveRestaurantService } from '../active-restaurant.service';
+
 @Component({
   selector: 'app-pick-restaurant',
   templateUrl: './pick-restaurant.component.html',
@@ -13,7 +15,7 @@ export class PickRestaurantComponent implements OnInit {
 
   public restaurants = MOCK_DATA;
   public ids = Object.keys(this.restaurants);
-  private activeId: string | undefined = undefined;
+  private activeId: any;
 
 
   public onClick(id: string) {
@@ -21,13 +23,14 @@ export class PickRestaurantComponent implements OnInit {
       this.openDialog(id)
     }
     else {
-      this.activeId = id;
+      this.dataService.setActiveRestaurant(id);
       //this.router.navigate(['/menu']);
     }
+    console.log(this.activeId.activeId);
   }
 
   public isActive(id: string) {
-    return id === this.activeId;
+    return id === this.activeId?.activeId;
   }
 
   private openDialog(id: string) {
@@ -42,16 +45,27 @@ export class PickRestaurantComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
-        this.activeId = id;
+        this.dataService.setActiveRestaurant(id);
         //this.router.navigate(['/menu']);
       }
-    }
-  );  
-}
+    });  
+  }
 
-  constructor(private dialog: MatDialog, private router: Router) { }
+  getActiveRestaurant(): void {
+    this.dataService.getActiveRestaurant()
+      .subscribe(id => this.activeId = id);
+  }
+
+  constructor(
+    private dialog: MatDialog, 
+    private router: Router, 
+    private dataService: ActiveRestaurantService) 
+    {
+
+    }
 
   ngOnInit(): void {
+    this.getActiveRestaurant();
   }
 
 }
