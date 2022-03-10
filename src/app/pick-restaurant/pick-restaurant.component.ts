@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { Router } from '@angular/router';
 import { ChangeRestaurantDialogComponent } from '../change-restaurant-dialog/change-restaurant-dialog.component';
+import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MOCK_DATA } from '../mock-restaurant';
 
 import { ActiveRestaurantService } from '../active-restaurant.service';
@@ -17,19 +18,21 @@ export class PickRestaurantComponent implements OnInit {
   public ids = Object.keys(this.restaurants);
   private active: any;
 
-
   public onClick(id: string) {
     if (this.active !== undefined) {
       this.openDialog(id)
     }
     else {
       this.activeService.setActiveRestaurant(id);
-      this.router.navigate(['/menu'], {state: {id: this.activeId}});
     }
   }
 
   public isActive(id: string) {
     return id === this.active?.activeId;
+  }
+
+  public hasPicked() {
+    return this.active !== undefined;
   }
 
   private openDialog(id: string) {

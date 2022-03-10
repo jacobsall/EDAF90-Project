@@ -1,0 +1,17 @@
+<mat-stepper [linear]="true" #stepper>
+  <mat-step [completed]="pick_res.hasPicked()">
+    <app-pick-restaurant #pick_res></app-pick-restaurant>
+    <button mat-raised-button
+            matStepperNext
+            color="primary"
+            [disabled]="!pick_res.hasPicked()">Next</button>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    Order places
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-stepper>
