@@ -21,11 +21,12 @@
     <button mat-raised-button
             matStepperNext
             color="primary">Next</button>
-  </mat-step>
+  </mat-step> <ng-template matStepLabel>Välj tillbehör</ng-template>
   <mat-step>
+    <ng-template matStepLabel>Slutför beställning</ng-template>
     <app-view-cart #vc></app-view-cart>
     <button mat-raised-button
-            (click)="sendOrder()";
+            (click)="sendOrder()"
             color="primary">Place order</button>
   </mat-step>
 </mat-stepper>
