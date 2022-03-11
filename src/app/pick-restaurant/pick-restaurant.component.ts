@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { Router } from '@angular/router';
 import { ChangeRestaurantDialogComponent } from '../change-restaurant-dialog/change-restaurant-dialog.component';
@@ -8,6 +8,8 @@ import { RestaurantsService } from '../restaurants.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-pick-restaurant',
@@ -22,6 +24,8 @@ export class PickRestaurantComponent implements OnInit, OnDestroy {
     shareReplay()
   );
 
+  @ViewChild('stepper') stepper: any;
+
   public restaurants: any;
   public mapOptions: google.maps.MapOptions = {
     zoomControl: false,
@@ -34,6 +38,7 @@ export class PickRestaurantComponent implements OnInit, OnDestroy {
   private active: any;
   private activeSub: any;
   private restaurantsSub: any;
+  private resetButton: any;
 
   public onClick(id: string) {
     if (this.active !== undefined) {
@@ -67,6 +72,7 @@ export class PickRestaurantComponent implements OnInit, OnDestroy {
       if (res) {
         this.dataService.setActiveRestaurant(id);
         this.dataService.clearCart();
+        document.getElementById('resetStepper')?.click();
       }
     });
   }
@@ -85,8 +91,8 @@ export class PickRestaurantComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     private dataService: GlobalDataService,
     private restaurantsService: RestaurantsService,
-    private breakpointObserver: BreakpointObserver)
-    {}
+    private breakpointObserver: BreakpointObserver,
+    @Inject(DOCUMENT) document: Document) {}
 
   ngOnInit(): void {
     this.activeSub = this.getActiveRestaurant();

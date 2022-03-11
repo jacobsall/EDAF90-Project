@@ -25,9 +25,19 @@
   <mat-step>
     <ng-template matStepLabel>Slutför beställning</ng-template>
     <app-view-cart #vc></app-view-cart>
-    <button mat-raised-button
-            (click)="sendOrder()"
-            [routerLink]="['/placed']"
-            color="accent">Beställ</button>
+    <button 
+      mat-raised-button
+      (click)="sendOrder()"
+      color="accent"
+    >
+      Beställ
+    </button>
+    <button
+      style="display: none"
+      id="resetStepper"
+      (click)="stepper.reset()"
+    >
+    </button>
+
   </mat-step>
 </mat-stepper>

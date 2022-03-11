@@ -1,6 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RestaurantsService } from '../restaurants.service';
 import { GlobalDataService } from '../global-data.service';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
+import { map, shareReplay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-extras',
@@ -8,6 +11,12 @@ import { GlobalDataService } from '../global-data.service';
   styleUrls: ['./extras.component.css']
 })
 export class ExtrasComponent implements OnInit, OnDestroy {
+
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  .pipe(
+    map(result => result.matches),
+    shareReplay()
+  );
 
   public restaurants: any;
   private active: any;
@@ -53,7 +62,8 @@ export class ExtrasComponent implements OnInit, OnDestroy {
 
   constructor(
     private restaurantsService: RestaurantsService,
-    private dataService: GlobalDataService
+    private dataService: GlobalDataService,
+    private breakpointObserver: BreakpointObserver
   ) { }
 
   ngOnInit(): void {

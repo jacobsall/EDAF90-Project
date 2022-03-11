@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { GlobalDataService } from '../global-data.service';
 import { RestaurantsService } from '../restaurants.service';
 import { Router } from "@angular/router";
