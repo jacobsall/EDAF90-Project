@@ -36,7 +36,7 @@ export class ViewCartComponent implements OnInit {
     }
     return Object.keys(this.cart)
     .map(x=> this.cart[x].amount * this.cart[x].price)
-    .reduce((tot, elem) => tot + elem);
+    .reduce((tot, elem) => tot + elem) + " kr"
   }
 
 }
