@@ -56,6 +56,7 @@ export class PickRestaurantComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
         this.dataService.setActiveRestaurant(id);
+        this.dataService.clearCart();
       }
     });
   }

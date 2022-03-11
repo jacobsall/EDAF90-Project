@@ -50,7 +50,6 @@ export class ExtrasComponent implements OnInit {
 
   public addExtra(name: string) {
     this.dataService.addToCart(name, this.extras[name].price);
-    console.log(this.cart);
   }
 
   nbrInCart(name: string): number {
