@@ -34,28 +34,7 @@ export class ViewMenuComponent implements OnInit, OnDestroy {
     return this.cart?.[name]?.amount;
   }
 
-  constructor(
-    private dataService: GlobalDataService,
-    private restaurantsService: RestaurantsService,
-    ) {}
-
-  private getCart() {
-    return this.dataService.getCart()
-      .subscribe(item => {
-        this.cart = item;
-      });
-  }
-
-  ngOnInit(): void {
-    this.cartSub = this.getCart();
-    this.dataSub = this.getActiveRestaurant();
-  }
-
-  ngOnDestroy(): void {
-    this.cartSub.unsubscribe();
-    this.dataSub.unsubscribe();
-  }
-
+  
   private getActiveRestaurant(): void {
     this.dataService.getActiveRestaurant()
       .subscribe(item => {
@@ -69,5 +48,27 @@ export class ViewMenuComponent implements OnInit, OnDestroy {
       this.menu = this.restaurants.find((a: any) => a.id === this.active?.activeId)?.menu;
       this.pizzas = this.menu && Object.keys(this.menu);
     });
+  }
+
+  private getCart() {
+    return this.dataService.getCart()
+      .subscribe(item => {
+        this.cart = item;
+      });
+  }
+  
+  constructor(
+    private dataService: GlobalDataService,
+    private restaurantsService: RestaurantsService,
+    ) {}
+
+  ngOnInit(): void {
+    this.cartSub = this.getCart();
+    this.dataSub = this.getActiveRestaurant();
+  }
+
+  ngOnDestroy(): void {
+    this.cartSub.unsubscribe();
+    this.dataSub.unsubscribe();
   }
 }

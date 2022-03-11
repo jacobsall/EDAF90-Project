@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RestaurantsService } from '../restaurants.service';
 import { GlobalDataService } from '../global-data.service';
 
@@ -7,38 +7,33 @@ import { GlobalDataService } from '../global-data.service';
   templateUrl: './extras.component.html',
   styleUrls: ['./extras.component.css']
 })
-export class ExtrasComponent implements OnInit {
+export class ExtrasComponent implements OnInit, OnDestroy {
 
   public restaurants: any;
   private active: any;
   public extras: any;
   public keys:any;
   private cart: any;
+  private cartSub: any;
+  private activeSub: any;
+  private restaurantSub: any;
 
-  constructor(
-    private restaurantsService: RestaurantsService,
-    private dataService: GlobalDataService
-  ) { }
-
-  ngOnInit(): void {
-    this.getActiveRestaurant();
-    this.getCart();
-  }
-
-  private getActiveRestaurant(): void {
-    this.dataService.getActiveRestaurant()
+  
+  private getActiveRestaurant() {
+    return this.dataService.getActiveRestaurant()
       .subscribe(item => {
         this.active = item;
-        this.getRestaurants();
+        this.restaurantSub = this.getRestaurants();
     });
   }
 
-  private getRestaurants(): void {
-    this.restaurantsService.getRestaurants()
-      .subscribe(items => {this.restaurants = items;
-      this.extras = this.restaurants.find((a: any) => a.id === this.active?.activeId)?.extras;
-      this.keys = this.extras && Object.keys(this.extras);
-    });
+  private getRestaurants() {
+    return this.restaurantsService.getRestaurants()
+      .subscribe(items => {
+        this.restaurants = items;
+        this.extras = this.restaurants.find((a: any) => a.id === this.active?.activeId)?.extras;
+        this.keys = this.extras && Object.keys(this.extras);
+      });
   }
 
   private getCart() {
@@ -55,4 +50,21 @@ export class ExtrasComponent implements OnInit {
   nbrInCart(name: string): number {
     return this.cart?.[name]?.amount;
   }
+
+  constructor(
+    private restaurantsService: RestaurantsService,
+    private dataService: GlobalDataService
+  ) { }
+
+  ngOnInit(): void {
+    this.activeSub = this.getActiveRestaurant();
+    this.cartSub = this.getCart();
+  }
+
+  ngOnDestroy(): void {
+    this.activeSub.unsubscribe();
+    this.restaurantSub.unsubscribe();
+    this.cartSub.unsubscribe();
+  }
+
 }
