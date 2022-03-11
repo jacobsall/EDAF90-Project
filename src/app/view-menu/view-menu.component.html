@@ -1,0 +1,27 @@
+<div class="container">
+  <h2>Meny</h2>
+
+  <mat-grid-list [cols]="(isHandset$ | async) ? '1' : '3' " rowHeight="200px" class="grid">
+    <mat-grid-tile *ngFor="let pizza of pizzas">
+      <mat-card class="pizza" [matBadge]="nbrInCart(pizza)" matBadgeColor="accent">
+        <div class="actions">
+          <div>
+            <mat-card-title>{{pizza | titlecase }}</mat-card-title>
+            <mat-card-subtitle>{{menu[pizza].price + " kr"}}</mat-card-subtitle>
+          </div>
+          <button mat-mini-fab (click)="this.addPizza(pizza)"
+                  color="primary">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+        <mat-card-content class="actions">
+          <p>
+            Innehåller:
+            {{ingredientString(pizza) | titlecase }}
+          </p>
+        </mat-card-content>
+      </mat-card>
+      <mat-divider></mat-divider>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

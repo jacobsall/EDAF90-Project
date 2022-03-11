@@ -1,0 +1,49 @@
+<mat-stepper [linear]="true" #stepper>
+  <mat-step [completed]="hasPicked()">
+    <ng-template matStepLabel>Välj restaurang</ng-template>
+    <app-pick-restaurant #pick_res></app-pick-restaurant>
+    <div class="next">
+      <button mat-raised-button
+              matStepperNext
+              color="primary"
+              [disabled]="!hasPicked()">Next</button>
+    </div>
+  </mat-step>
+  <mat-step [completed]="vm.hasPicked()">
+    <ng-template matStepLabel>Välj pizzor</ng-template>
+    <app-view-menu #vm></app-view-menu>
+    <div class="next">
+    <button mat-raised-button
+            matStepperNext
+            color="primary"
+            [disabled]="!vm.hasPicked()">Next</button>
+    </div>
+  </mat-step>
+  <mat-step [optional]="true">
+    <ng-template matStepLabel>Välj tillbehör</ng-template>
+    <app-extras #extras></app-extras>
+    <div class="next">
+      <button mat-raised-button
+              matStepperNext
+              color="primary">Next</button>
+    </div>
+  </mat-step> <ng-template matStepLabel>Välj tillbehör</ng-template>
+  <mat-step>
+    <ng-template matStepLabel>Slutför beställning</ng-template>
+    <app-view-cart #vc></app-view-cart>
+    <div class="next">
+      <button 
+        mat-raised-button
+        (click)="sendOrder()"
+        color="accent"
+      >
+        Beställ
+      </button>
+      <button
+        style="display: none"
+        id="resetStepper"
+        (click)="stepper.reset()"
+      ></button>
+    </div>
+  </mat-step>
+</mat-stepper>

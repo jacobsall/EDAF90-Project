@@ -1,0 +1,10 @@
+.placed-card {
+  max-width: 400px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 20px;
+}
+.button-class{
+  margin-right: 15px;
+  margin-left: auto;
+}
