@@ -2,7 +2,7 @@
 
   <h2>Välj en restaurang</h2>
 
-<mat-grid-list cols="2" rowHeight="150px" class="grid">
+<mat-grid-list [cols]="(isHandset$ | async) ? '1' : '2' " rowHeight="150px" class="grid">
   <mat-grid-tile *ngFor="let restaurant of restaurants">
     <mat-card class="restaurant">
       <div>
@@ -26,7 +26,6 @@
         <map-marker
           [position]="getCoord(restaurant.location)"
           [title]="restaurant.name"
-
         >
       </map-marker>
       </google-map>

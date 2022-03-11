@@ -1,14 +1,23 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
-import { MOCK_DATA } from '../mock-restaurant';
 import { GlobalDataService } from '../global-data.service';
 import { RestaurantsService } from '../restaurants.service';
+
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
+import { map, shareReplay } from 'rxjs/operators';
+
 @Component({
   selector: 'app-view-menu',
   templateUrl: './view-menu.component.html',
   styleUrls: ['./view-menu.component.css']
 })
 export class ViewMenuComponent implements OnInit, OnDestroy {
+
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches),
+      shareReplay()
+    );
 
   public menu: any;
   public pizzas: any;
@@ -56,10 +65,11 @@ export class ViewMenuComponent implements OnInit, OnDestroy {
         this.cart = item;
       });
   }
-  
+
   constructor(
     private dataService: GlobalDataService,
     private restaurantsService: RestaurantsService,
+    private breakpointObserver: BreakpointObserver
     ) {}
 
   ngOnInit(): void {

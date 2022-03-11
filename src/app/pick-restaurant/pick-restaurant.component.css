@@ -30,7 +30,20 @@
   /* background-color: blueviolet; */
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1200px) {
+  .map {
+    display: none;
+  }
+}
+
+
+@media (max-width: 960px) {
+  .map {
+    display: inherit;
+  }
+}
+
+@media (max-width: 500px) {
   .map {
     display: none;
   }
