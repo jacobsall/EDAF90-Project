@@ -52,4 +52,8 @@ export class ExtrasComponent implements OnInit {
     this.dataService.addToCart(name, this.extras[name].price);
     console.log(this.cart);
   }
+
+  nbrInCart(name: string): number {
+    return this.cart?.[name]?.amount;
+  }
 }

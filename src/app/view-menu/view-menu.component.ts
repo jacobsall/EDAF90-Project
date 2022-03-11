@@ -10,25 +10,29 @@ import { RestaurantsService } from '../restaurants.service';
 })
 export class ViewMenuComponent implements OnInit, OnDestroy {
 
-  private id = history.state.id || 0;
   public menu: any;
   public pizzas: any;
   private cart: any;
   private cartSub: any;
+  private dataSub: any;
   private active: any;
   private restaurants: any;
 
-  public ingredientString(pizza: string) {
+  ingredientString(pizza: string) {
     return this.menu[pizza].ingredients.reduce((tot: string,curr:string) => tot + ", " + curr);
   }
 
-  public addPizza(name: string) {
+  addPizza(name: string) {
     this.dataService.addToCart(name, this.menu[name].price);
     console.log(this.cart);
   }
 
-  public hasPicked() {
+  hasPicked() {
     return this.cart !== undefined;
+  }
+
+  nbrInCart(name: string): number {
+    return this.cart?.[name]?.amount;
   }
 
   constructor(
@@ -45,11 +49,12 @@ export class ViewMenuComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.cartSub = this.getCart();
-    this.getActiveRestaurant();
+    this.dataSub = this.getActiveRestaurant();
   }
 
   ngOnDestroy(): void {
     this.cartSub.unsubscribe();
+    this.dataSub.unsubscribe();
   }
 
   private getActiveRestaurant(): void {

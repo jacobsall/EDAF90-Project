@@ -21,7 +21,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatBadgeModule } from '@angular/material/badge';
 
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -74,6 +75,7 @@ import { ViewCartComponent } from './view-cart/view-cart.component';
     MatStepperModule,
     MatFormFieldModule,
     MatCheckboxModule,
+    MatBadgeModule
   ],
   providers: [GlobalDataService,RestaurantsService],
   bootstrap: [AppComponent],

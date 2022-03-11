@@ -3,7 +3,7 @@
 
   <mat-grid-list cols="3" rowHeight="200px" class="grid">
     <mat-grid-tile *ngFor="let pizza of pizzas">
-      <mat-card class="pizza">
+      <mat-card class="pizza" [matBadge]="nbrInCart(pizza)" matBadgeColor="warn">
         <div class="actions">
           <div>
             <mat-card-title>{{pizza}}</mat-card-title>

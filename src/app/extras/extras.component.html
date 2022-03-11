@@ -3,7 +3,7 @@
   
     <mat-grid-list cols="4" rowHeight="175px" class="grid">
       <mat-grid-tile *ngFor="let extra of keys">
-        <mat-card class="extra">
+        <mat-card class="extra"  [matBadge]="nbrInCart(extra)" matBadgeColor="warn">
           <div class="actions">
             <div>
               <mat-card-title>{{extra}}</mat-card-title>
