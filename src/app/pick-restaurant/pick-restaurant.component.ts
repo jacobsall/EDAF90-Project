@@ -5,12 +5,22 @@ import { ChangeRestaurantDialogComponent } from '../change-restaurant-dialog/cha
 import { GlobalDataService } from '../global-data.service';
 import { RestaurantsService } from '../restaurants.service';
 
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
+import { map, shareReplay } from 'rxjs/operators';
+
 @Component({
   selector: 'app-pick-restaurant',
   templateUrl: './pick-restaurant.component.html',
   styleUrls: ['./pick-restaurant.component.css']
 })
 export class PickRestaurantComponent implements OnInit, OnDestroy {
+
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  .pipe(
+    map(result => result.matches),
+    shareReplay()
+  );
 
   public restaurants: any;
   public mapOptions: google.maps.MapOptions = {
@@ -75,7 +85,8 @@ export class PickRestaurantComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     private router: Router,
     private dataService: GlobalDataService,
-    private restaurantsService: RestaurantsService)
+    private restaurantsService: RestaurantsService,
+    private breakpointObserver: BreakpointObserver)
     {}
 
   ngOnInit(): void {
