@@ -29,7 +29,7 @@ export class ViewMenuComponent implements OnInit, OnDestroy {
 
 
   ingredientString(pizza: string) {
-    return this.menu[pizza].ingredients.reduce((tot: string,curr:string) => tot + ", " + curr);
+    return this.menu[pizza].ingredients?.reduce((tot: string,curr:string) => tot + ", " + curr);
   }
 
   addPizza(name: string) {
