@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { GlobalDataService } from '../global-data.service';
 import { RestaurantsService } from '../restaurants.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-create-order',
@@ -12,7 +13,7 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
   private activeSub: any;
   private active: any;
   public isLinear: boolean = true;
-  
+
   private getActiveRestaurant() {
     return this.dataService.getActiveRestaurant()
       .subscribe(item => {
@@ -26,7 +27,8 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
 
   constructor(
     private dataService: GlobalDataService,
-    private restaurantsService: RestaurantsService
+    private restaurantsService: RestaurantsService,
+    private router: Router,
     ) {}
 
   ngOnInit(): void {
@@ -41,5 +43,6 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
     this.restaurantsService.pushCart();
     this.dataService.clearCart();
     this.dataService.clearActive();
+    this.router.navigate(['/placed']);
   }
 }

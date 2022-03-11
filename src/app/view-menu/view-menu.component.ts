@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { GlobalDataService } from '../global-data.service';
 import { RestaurantsService } from '../restaurants.service';
-
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -45,7 +44,7 @@ export class ViewMenuComponent implements OnInit, OnDestroy {
     return this.cart?.[name]?.amount;
   }
 
-  
+
   private getActiveRestaurant() {
     return this.dataService.getActiveRestaurant()
       .subscribe(item => {
