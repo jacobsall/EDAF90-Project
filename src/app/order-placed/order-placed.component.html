@@ -4,4 +4,10 @@
     <mat-card-title>Tack för din beställning!</mat-card-title>
     <mat-card-subtitle>Din mat är nu på väg.</mat-card-subtitle>
   </mat-card-header>
+  <button class="button-class" mat-raised-button color="primary" [routerLink]="['/order']">
+    <span>Gör en ny beställning</span>
+  </button>
+  <button class="button-class" mat-raised-button  [routerLink]="['']">
+    <span>Färdig</span>
+  </button>
 </mat-card>
