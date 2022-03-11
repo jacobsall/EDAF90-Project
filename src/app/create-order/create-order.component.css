@@ -1,3 +1,4 @@
 .next {
-  layout-align: end center;
+  display: flex;
+  justify-content: flex-end;
 }
