@@ -20,7 +20,12 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button> -->
-      <span routerLink="">PizzaPower</span>
+      <span>
+        <button mat-button routerLink="/">
+          PizzaPower
+          <img src="assets/img/Pizza.svg">
+        </button>
+      </span>
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>

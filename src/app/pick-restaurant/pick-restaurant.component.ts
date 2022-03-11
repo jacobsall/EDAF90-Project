@@ -83,7 +83,6 @@ export class PickRestaurantComponent implements OnInit, OnDestroy {
 
   constructor(
     private dialog: MatDialog,
-    private router: Router,
     private dataService: GlobalDataService,
     private restaurantsService: RestaurantsService,
     private breakpointObserver: BreakpointObserver)

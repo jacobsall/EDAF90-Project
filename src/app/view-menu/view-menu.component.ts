@@ -23,9 +23,11 @@ export class ViewMenuComponent implements OnInit, OnDestroy {
   public pizzas: any;
   private cart: any;
   private cartSub: any;
-  private dataSub: any;
+  private activeSub: any;
+  private restaurantSub: any;
   private active: any;
   private restaurants: any;
+
 
   ingredientString(pizza: string) {
     return this.menu[pizza].ingredients.reduce((tot: string,curr:string) => tot + ", " + curr);
@@ -44,15 +46,15 @@ export class ViewMenuComponent implements OnInit, OnDestroy {
   }
 
   
-  private getActiveRestaurant(): void {
-    this.dataService.getActiveRestaurant()
+  private getActiveRestaurant() {
+    return this.dataService.getActiveRestaurant()
       .subscribe(item => {
         this.active = item;
-        this.getMenu();
+        this.restaurantSub = this.getMenu();
     });
   }
-  private getMenu(): void {
-    this.restaurantsService.getRestaurants()
+  private getMenu() {
+    return this.restaurantsService.getRestaurants()
       .subscribe(items => {this.restaurants = items;
       this.menu = this.restaurants.find((a: any) => a.id === this.active?.activeId)?.menu;
       this.pizzas = this.menu && Object.keys(this.menu);
@@ -74,11 +76,12 @@ export class ViewMenuComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.cartSub = this.getCart();
-    this.dataSub = this.getActiveRestaurant();
+    this.activeSub = this.getActiveRestaurant();
   }
 
   ngOnDestroy(): void {
     this.cartSub.unsubscribe();
-    this.dataSub.unsubscribe();
+    this.activeSub.unsubscribe();
+    this.restaurantSub.unsubscribe();
   }
 }
