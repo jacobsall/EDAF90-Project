@@ -26,8 +26,17 @@ export class ViewCartComponent implements OnInit {
       });
   }
 
-  /*cartString(item: string) {
-    return this.cart[item].reduce((tot: string,curr:string) => tot + ", " + curr);
-  }*/
+  cartString(item: string) {
+    return item+' '+this.cart[item].amount+ 'st   à  ' +this.cart[item].price+ ' kr';
+  }
+
+  totalPrice(){
+    if(this.cart === undefined){
+      return 0;
+    }
+    return Object.keys(this.cart)
+    .map(x=> this.cart[x].amount * this.cart[x].price)
+    .reduce((tot, elem) => tot + elem);
+  }
 
 }

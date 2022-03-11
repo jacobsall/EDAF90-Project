@@ -1,3 +1,8 @@
-<p>view-cart works!</p>
-
-<mat-card *ngFor="let item of viewCart">{{item}}</mat-card>
+<h1>Varukorg</h1>
+<mat-list>
+    <mat-list-item *ngFor="let item of viewCart">{{cartString(item)}}</mat-list-item>
+</mat-list>
+<mat-divider></mat-divider>
+<mat-list>
+    <mat-list-item>Total kostnad:  {{totalPrice()}}</mat-list-item>
+</mat-list>
